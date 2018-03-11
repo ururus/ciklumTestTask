@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors')
 const app = express();
 
-const generateBlocks = require('./blocks');
+const generateBlocks = require('./src/blocks');
 
 const SERVER_CONFIG = {
 	PORT: 8080,

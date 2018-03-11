@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { browserHistory } from "react-router";
 import { syncHistoryWithStore, routerMiddleware } from "react-router-redux";
 import freeze from "redux-freeze";
-import { reducers } from "./reducers/index";
+import { reducers } from "./redux/reducers/index";
 import api from './middleware/api';
 
 // add the middlewares

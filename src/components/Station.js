@@ -2,7 +2,6 @@ import React from "react";
 import {Stage, Group, Layer, Rect, Text, Line,} from 'react-konva';
 import Konva from 'konva';
 import {Grid, Col, Row,Button} from 'react-bootstrap';
-import actions from '../actions';
 import ReactInterval from 'react-interval';
 
 export default class Station extends React.Component {

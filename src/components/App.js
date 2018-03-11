@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import {Stage, Group, Layer, Rect, Text, Line} from 'react-konva';
 import Konva from 'konva';
 import {Grid, Col, Row, FormGroup, FormControl} from 'react-bootstrap';
-import actions from '../actions';
+import actions from '../redux/actions';
 import {connect} from 'react-redux';
 import Station from './Station'
 
