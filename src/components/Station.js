@@ -21,12 +21,10 @@ export default class Station extends React.Component {
   setLinePoints() {
     let points = this.props.points
     let linePoints = []
-
-    let max = Math.max.apply(null, points) > Math.abs(Math.min.apply(null, points)) ?
-      Math.max.apply(null, points) : Math.abs(Math.min.apply(null, points))
-
-    this.props.setStationMax(this.props.name,max)
-
+    let positiveMax = Math.max.apply(null, points)
+    let negativeMax = Math.min.apply(null, points)
+    let max = positiveMax > Math.abs(negativeMax) ?
+     positiveMax : Math.abs(negativeMax)
 
     let rx = this.props.width / this.state.pointsQuantity
     let ry = (this.state.height - 20) / 2 / max
@@ -42,6 +40,9 @@ export default class Station extends React.Component {
       linePoints: linePoints,
       max: max
     })
+
+    this.props.setStationMinMax(this.props.name,positiveMax,negativeMax)
+
   }
 
 
@@ -100,6 +101,14 @@ export default class Station extends React.Component {
                 fontSize={18}
                 x={10}
                 y={0}
+              />
+              <Text
+                  text={this.props.points[this.props.points.length-1]}
+                  fontSize={30}
+                  fill="red"
+                  opacity={0.4}
+                  x={this.props.width/2-50}
+                  y={20}
               />
               <Text
                 text={this.state.max * -1}

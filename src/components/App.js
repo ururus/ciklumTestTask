@@ -67,11 +67,12 @@ class App extends React.Component {
     })
   }
 
-  setStationMax(station, max) {
+  setStationMinMax(station, positiveMax, negativeMax) {
     let editedStationList = this.state.stationList
     for (let i = 0; i < editedStationList.length; i++) {
       if (editedStationList[i].name == station) {
-        editedStationList[i].max = max
+        editedStationList[i].positiveMax = positiveMax
+        editedStationList[i].negativeMax = negativeMax
       }
     }
     if (this.state.sort) {
@@ -84,13 +85,18 @@ class App extends React.Component {
   }
 
   sortList(list) {
-    console.log(this.state.sort)
-    list.sort((a, b) => {
-      return a.max - b.max;
-    });
-    if (this.state.sort == 'asc') {
+
+    if (this.state.sort == 'max') {
+      list.sort((a, b) => {
+        return a.positiveMax - b.positiveMax;
+      });
       list.reverse()
+    }else if(this.state.sort == 'min') {
+      list.sort((a, b) => {
+        return a.negativeMax - b.negativeMax;
+      });
     }
+
     return list
   }
 
@@ -146,8 +152,8 @@ class App extends React.Component {
                            style={{borderRadius: 0, borderColor: 'black', fontSize: '1.1em',height:46}}
               >
                 <option value={null}>не сортировать</option>
-                <option value={'asc'}>наибольшая температура</option>
-                <option value={'desc'}>наменьшая температура</option>
+                <option value={'max'}>наибольшая температура</option>
+                <option value={'min'}>наменьшая температура</option>
               </FormControl></Col>
           </Row>
         </Col>
@@ -160,7 +166,7 @@ class App extends React.Component {
                           key={station.name}
                           name={station.name}
                           updateData={this.updateData.bind(this)}
-                          setStationMax={this.setStationMax.bind(this)}
+                          setStationMinMax={this.setStationMinMax.bind(this)}
           />
         })}
 
