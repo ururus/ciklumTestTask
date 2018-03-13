@@ -20,7 +20,7 @@ export default class Station extends React.Component {
 
   setLinePoints() {
     let points = this.props.points
-    let linePoints = []
+
     let positiveMax = Math.max.apply(null, points)
     let negativeMax = Math.min.apply(null, points)
     let max = positiveMax > Math.abs(negativeMax) ?
@@ -29,12 +29,13 @@ export default class Station extends React.Component {
     let rx = this.props.width / this.state.pointsQuantity
     let ry = (this.state.height - 20) / 2 / max
 
-
-    for (let i = 0; i < points.length; i++) {
+    let linePoints = []
+    points.map((point,i) => {
       let x = i * rx
-      let y = (this.state.height / 2) - (points[i] * ry)
-      linePoints.push(x, y)
-    }
+      let y = (this.state.height / 2) - (point * ry)
+      return linePoints.push(x,y)
+    })
+
 
     this.setState({
       linePoints: linePoints,
@@ -49,7 +50,7 @@ export default class Station extends React.Component {
   updateStation(){
    this.props.updateData(this.props.name, this.props.time)
   }
-
+lo
   componentDidMount() {
     this.setLinePoints()
     var reqInterval = setInterval(this.requestData, this.state.reqTime);

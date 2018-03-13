@@ -59,7 +59,7 @@ class App extends React.Component {
 
   getStationList() {
     let stationList = []
-    Object.keys(this.props.interplanetaryStations.stations).map(station => {
+    Object.keys(this.props.interplanetaryStations.stations).forEach((station,i) => {
       stationList.push({name: station, max: 0})
     })
     this.setState({
